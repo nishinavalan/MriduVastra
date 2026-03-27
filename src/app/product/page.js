@@ -1,20 +1,30 @@
 "use client";
-export const dynamic = "force-dynamic";
 
 import { useState } from "react";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import BabyWearSlider from "../components/babywear/BabyWearSlider";
 import { babyProductsall } from "../data/babyProducts";
 import { yogaProducts } from "../data/yogaProducts";
 
+/* ---------------- MAIN WRAPPER ---------------- */
 export default function ProductPage() {
+  return (
+    <Suspense fallback={<div className="p-10 text-center">Loading...</div>}>
+      <ProductContent />
+    </Suspense>
+  );
+}
+
+/* ---------------- ACTUAL CONTENT ---------------- */
+function ProductContent() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
   /* ---------------- PRODUCT ---------------- */
-  const product = [...babyProductsall, ...yogaProducts].find(
-    (p) => p.id === id
-  );
+  const product =
+    id &&
+    [...babyProductsall, ...yogaProducts].find((p) => p.id === id);
 
   /* ---------------- STATES ---------------- */
   const [selectedSize, setSelectedSize] = useState(null);
@@ -49,15 +59,11 @@ export default function ProductPage() {
 
   /* ---------------- VALIDATION ---------------- */
   const canProceed = !!selectedSize;
-  // const canProceed =
-  //   selectedSize &&
-  //   (product.type === "assorted-pack" ||
-  //     (product.type === "color-variant" || product.type === "tshirt" && selectedVariant));
 
   /* ---------------- UPI ---------------- */
   const upiLink = `upi://pay?pa=${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}&pn=MriduVastra&am=${product.price}&cu=INR&tn=${encodeURIComponent(
-  product.name + " - " + selectedSize
-)}`;
+    product.name + " - " + selectedSize
+  )}`;
 
   return (
     <div className="max-w-5xl mx-auto p-6">
