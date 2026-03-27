@@ -1,0 +1,33 @@
+/* @import "tailwindcss/preflight";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+@import "tailwindcss";
+
+/* your custom CSS after this line */
+
+/* Light Mode */
+:root {
+  --bg-color: #FAF7F0;
+  --text-color: #083b37;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color .3s ease, color .3s ease;
+}
+
+/* Dark Mode */
+html.dark body {
+  background-color: #0f172a;
+  color: white;
+}
+
+/* Navbar hover effect */
+nav li:hover {
+  transition: 0.3s ease;
+  text-decoration: underline;
+  text-decoration-color: #D9A441;
+  text-underline-offset: 6px;
+}
