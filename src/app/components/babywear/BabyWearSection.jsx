@@ -50,7 +50,7 @@ export default function BabyWearSection({ title = "Baby Wear Collection" }) {
               <div className="w-full max-w-sm bg-white dark:bg-gray-900 rounded-2xl shadow-md overflow-hidden flex flex-col">
 
                 {/* IMAGE */}
-                <div className="relative w-full aspect-[3/4]">
+                <div className="relative w-full aspect-3/4">
                   <Image
                     src={imageSrc}
                     alt={item.name}

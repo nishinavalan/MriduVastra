@@ -15,14 +15,26 @@ export default function ContactPage() {
     🕒 Available: 9 AM – 8 PM
   </div>
 
-  <a
-    href="/api/whatsapp"
-    className="block w-full bg-green-600 text-white py-3 rounded-xl font-semibold hover:bg-green-700 transition"
-  >
+  <button onClick={handleWhatsApp}>
     💬 Chat on WhatsApp
-  </a>
-
-</div>
+  </button>
+  </div>
     </section>
   );
 }
+  const handleWhatsApp = async () => {    
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        `/api/whatsapp?product=${encodeURIComponent(
+          product.name
+        )}&size=${selectedSize}`
+      );
+
+      const data = await res.json();
+      window.location.href = data.url;
+    } catch (err) {
+      alert("Something went wrong");
+    }  ;
