@@ -34,7 +34,7 @@ export default function ContactPage() {
         <div className="h-px bg-linear-to-r from-transparent via-[#054B43]/30 to-transparent" />
 
         {/* CONTACT INFO CARDS */}
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           <div className="rounded-2xl border border-[#054B43]/10 bg-white p-6">
             <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">
               Email

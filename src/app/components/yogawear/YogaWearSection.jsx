@@ -49,7 +49,7 @@ export default function YogaWearSection({ title = "Yoga Wear Collection" }) {
                     alt={item.name}
                     fill
                     sizes="(max-width: 768px) 90vw, 33vw"
-                    className="object-cover object-top"
+                    className="object-cover object-center w-full h-full"
                   />
               </div>
               <div className="p-4 text-left">

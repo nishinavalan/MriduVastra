@@ -13,7 +13,7 @@ export default function Home() {
             width={200}
             height={200}
             alt="MriduVastra Logo"
-            className="w-32 md:w-48 h-auto object-contain"
+            className="w-28 md:w-40 h-auto"
           />
         </div>
         {/* <div className="p-10 text-4xl font-bold text-green-600">
