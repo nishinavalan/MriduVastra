@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import BabyWearSlider from "../components/babywear/BabyWearSlider";
 import { babyProductsall } from "../data/babyProducts";
@@ -60,13 +59,54 @@ function ProductContent() {
   /* ---------------- VALIDATION ---------------- */
   const canProceed = !!selectedSize;
 
-  /* ---------------- UPI ---------------- */
-  const upiLink = `upi://pay?pa=${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}&pn=MriduVastra&am=${product.price}&cu=INR&tn=${encodeURIComponent(
-    product.name + " - " + selectedSize
-  )}`;
+  /* ---------------- HANDLERS ---------------- */
+
+  // WhatsApp handler (SAFE - backend)
+  const handleWhatsApp = async () => {
+    if (!canProceed) {
+      alert("Please select size");
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        `/api/whatsapp?product=${encodeURIComponent(
+          product.name
+        )}&size=${selectedSize}`
+      );
+
+      const data = await res.json();
+      window.location.href = data.url;
+    } catch (err) {
+      alert("Something went wrong");
+    }
+  };
+
+  // UPI handler (SAFE - backend)
+  const handleUPI = async () => {
+    if (!canProceed) {
+      alert("Please select size");
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        `/api/upi?product=${encodeURIComponent(
+          product.name
+        )}&size=${selectedSize}&amount=${product.price}`
+      );
+
+      const data = await res.json();
+
+      // redirect to QR page
+      window.location.href = `/upi?link=${encodeURIComponent(data.link)}`;
+    } catch (err) {
+      alert("Payment error");
+    }
+  };
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
+    <div className="max-w-5xl mx-auto px-4 py-6 md:px-6">
       {/* BACK */}
       <button
         onClick={() => window.history.back()}
@@ -75,16 +115,21 @@ function ProductContent() {
         ← Back
       </button>
 
-      <div className="flex flex-col lg:flex-row gap-10">
+      <div className="flex flex-col lg:flex-row gap-8">
         {/* IMAGE */}
-        <div className="w-full lg:w-1/2">
+        <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
           <BabyWearSlider images={images} productName={product.name} />
         </div>
 
         {/* DETAILS */}
         <div className="w-full lg:w-1/2 space-y-5">
-          <h1 className="text-2xl font-semibold">{product.name}</h1>
-          <p className="text-xl text-green-700">₹{product.price}</p>
+          <h1 className="text-xl md:text-2xl font-semibold">
+            {product.name}
+          </h1>
+
+          <p className="text-lg md:text-xl text-green-700">
+            ₹{product.price}
+          </p>
 
           {/* SIZE */}
           <div>
@@ -98,7 +143,7 @@ function ProductContent() {
                     key={size}
                     disabled={out}
                     onClick={() => !out && setSelectedSize(size)}
-                    className={`px-4 py-2 rounded-full text-xs border
+                    className={`px-4 py-2.5 rounded-full text-sm border transition
                       ${
                         out
                           ? "bg-gray-200 text-gray-400 line-through cursor-not-allowed"
@@ -115,46 +160,24 @@ function ProductContent() {
           </div>
 
           {/* BUTTONS */}
-          <div className="flex gap-4 mt-6">
+          <div className="flex flex-col md:flex-row gap-4 mt-6">
             {/* WHATSAPP */}
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-
-                if (!canProceed) {
-                  alert("Please select size");
-                  return;
-                }
-
-                window.location.href = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                  `Order for ${product.name}, Size: ${selectedSize}`
-                )}`;
-              }}
-              className={`flex-1 text-center py-3 rounded-xl font-semibold
+            <button
+              onClick={handleWhatsApp}
+              className={`w-full text-center py-3 rounded-xl font-semibold transition
                 ${
                   canProceed
                     ? "bg-green-600 text-white"
-                    : "bg-gray-300 text-gray-500"
+                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
                 }`}
             >
               🟢 WhatsApp
-            </a>
+            </button>
 
             {/* UPI */}
-            <a
-              href={
-                canProceed
-                  ? `/upi?link=${encodeURIComponent(upiLink)}`
-                  : "#"
-              }
-              onClick={(e) => {
-                if (!canProceed) {
-                  e.preventDefault();
-                  alert("Please select size");
-                }
-              }}
-              className={`flex-1 inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold
+            <button
+              onClick={handleUPI}
+              className={`w-full text-center py-3 rounded-xl font-semibold transition
                 ${
                   canProceed
                     ? "bg-[#033B33] text-white"
@@ -162,7 +185,7 @@ function ProductContent() {
                 }`}
             >
               💳 Pay ₹{product.price} via UPI
-            </a>
+            </button>
           </div>
         </div>
       </div>
