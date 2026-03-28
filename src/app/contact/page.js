@@ -1,11 +1,16 @@
+"use client";
+
 export default function ContactPage() {
 
   const handleWhatsApp = async () => {
     try {
-      const res = await fetch(`/api/whatsapp?text=${encodeURIComponent("Hi, I want to know more about your products")}`);
-      const data = await res.json();
+      const res = await fetch(
+        `/api/whatsapp?text=${encodeURIComponent("Hi, I want to know more about your products")}`
+      );
 
+      const data = await res.json();
       window.location.href = data.url;
+
     } catch (err) {
       console.error(err);
       alert("Please try again");

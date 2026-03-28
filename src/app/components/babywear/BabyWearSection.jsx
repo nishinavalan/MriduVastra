@@ -74,7 +74,7 @@ export default function BabyWearSection({ title = "Baby Wear Collection" }) {
                   {/* BUTTON */}
                   <Link
                     href={`/product?id=${item.id}`}
-                    className="mt-auto text-center bg-[#054B43] text-white px-4 py-3 rounded-xl hover:bg-[#033B33] transition min-h-[44px]"
+                    className="mt-auto text-center bg-[#054B43] text-white px-4 py-3 rounded-xl hover:bg-[#033B33] transition min-h-11"
                   >
                     View Details →
                   </Link>
