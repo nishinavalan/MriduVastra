@@ -16,7 +16,7 @@ export default function Home() {
             className="w-28 md:w-40 h-auto"
           />
         </div>
-        <div className="p-5 text-xl font-bold text-green-600">
+        <div className="p-5 text-sm md:text-base font-semibold text-[#054B43] dark:text-green-400">
           🌿 100% Cotton | 👶 Soft on skin | 🚚 Fast Delivery
         </div>
         {/* <div className="p-10 text-4xl font-bold text-green-600">
