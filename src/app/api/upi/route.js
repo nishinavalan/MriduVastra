@@ -1,5 +1,9 @@
-export default function handler(req, res) {
-  const { product, size, amount } = req.query;
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+
+  const product = searchParams.get("product");
+  const size = searchParams.get("size");
+  const amount = searchParams.get("amount");
 
   const upi = process.env.UPI_ID;
 
@@ -7,5 +11,5 @@ export default function handler(req, res) {
     `${product} - ${size}`
   )}`;
 
-  res.status(200).json({ link });
+  return Response.json({ link });
 }

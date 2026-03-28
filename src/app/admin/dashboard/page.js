@@ -6,11 +6,16 @@ export default function Dashboard(){
 
   const [products,setProducts] = useState([]);
 
-  useEffect(()=>{
-    fetch("/api/get-products")
-      .then(res=>res.json())
-      .then(data=>setProducts(data));
-  },[]);
+  useEffect(() => {
+  fetch("/api/get-products")
+    .then((res) => res.json())
+    .then((data) => {
+      setProducts(Array.isArray(data) ? data : []);
+    })
+    .catch(() => {
+      setProducts([]);
+    });
+}, []);
 
   const deleteProduct = async(id)=>{
 
@@ -48,7 +53,8 @@ export default function Dashboard(){
 
       <div className="grid md:grid-cols-3 gap-8">
 
-        {products.map((p)=>(
+        {Array.isArray(products) &&
+           products.map((p) => (
           <div
             key={p._id}
             className="bg-white rounded-xl shadow-md overflow-hidden"

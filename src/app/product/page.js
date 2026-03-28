@@ -149,7 +149,7 @@ function ProductContent() {
                           ? "bg-gray-200 text-gray-400 line-through cursor-not-allowed"
                           : selectedSize === size
                           ? "bg-black text-white"
-                          : "bg-white"
+                          : "bg-gray-100 text-black dark:bg-gray-800 dark:text-white"
                       }`}
                   >
                     {size}
@@ -164,10 +164,10 @@ function ProductContent() {
             {/* WHATSAPP */}
             <button
               onClick={handleWhatsApp}
-              className={`w-full text-center py-3 rounded-xl font-semibold transition
+              className={`w-full py-3 rounded-xl font-semibold transition
                 ${
                   canProceed
-                    ? "bg-green-600 text-white"
+                    ? "bg-green-600 text-white hover:bg-green-700"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
                 }`}
             >
@@ -177,10 +177,10 @@ function ProductContent() {
             {/* UPI */}
             <button
               onClick={handleUPI}
-              className={`w-full text-center py-3 rounded-xl font-semibold transition
+              className={`w-full py-3 rounded-xl font-semibold transition
                 ${
                   canProceed
-                    ? "bg-[#033B33] text-white"
+                    ? "bg-[#033B33] text-white hover:bg-[#055f52]"
                     : "bg-gray-300 text-gray-500 cursor-not-allowed"
                 }`}
             >

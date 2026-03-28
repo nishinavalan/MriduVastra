@@ -1,5 +1,8 @@
-export default function handler(req, res) {
-  const { product, size } = req.query;
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+
+  const product = searchParams.get("product");
+  const size = searchParams.get("size");
 
   const phone = process.env.WHATSAPP_NUMBER;
 
@@ -7,5 +10,5 @@ export default function handler(req, res) {
     `Order for ${product}, Size: ${size}`
   )}`;
 
-  res.status(200).json({ url });
+  return Response.json({ url });
 }

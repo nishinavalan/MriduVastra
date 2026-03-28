@@ -30,7 +30,7 @@ export default function AddProduct(){
 
   return(
 
-    <div className="max-w-md mx-auto mt-16 bg-white p-8 rounded-xl shadow">
+    <div className="max-w-md mx-auto mt-16 bg-white dark:bg-gray-900 text-black dark:text-white p-8 rounded-xl shadow">
 
       <h1 className="text-2xl font-semibold text-green-900 mb-6 text-center">
         Add Product
