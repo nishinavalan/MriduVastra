@@ -11,8 +11,8 @@ export default function YogaWearSection({ title = "Yoga Wear Collection" }) {
     loop: false,
     mode: "snap",
     slides: {
-      perView: 1.2,
-      spacing: 16,
+      perView: 1.1,
+      spacing: 12,
     },
     breakpoints: {
       "(min-width: 640px)": {

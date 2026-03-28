@@ -117,7 +117,7 @@ function ProductContent() {
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* IMAGE */}
-        <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
+        <div className="w-full overflow-hidden lg:w-1/2 mb-4 lg:mb-0">
           <BabyWearSlider images={images} productName={product.name} />
         </div>
 
@@ -188,7 +188,7 @@ function ProductContent() {
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </div> 
+      </div>   
   );
 }

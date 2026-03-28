@@ -10,7 +10,7 @@ export default function BabyWearSection({ title = "Baby Wear Collection" }) {
   const [sliderRef] = useKeenSlider({
     loop: false,
     mode: "snap",
-    slides: { perView: 1.2, spacing: 16 },
+    slides: { perView: 1.1, spacing: 12 },
     breakpoints: {
       "(min-width: 640px)": { slides: { perView: 2.2, spacing: 20 } },
       "(min-width: 1024px)": { slides: { perView: 3.2, spacing: 24 } },
