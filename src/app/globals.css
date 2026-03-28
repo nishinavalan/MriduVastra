@@ -31,3 +31,7 @@ nav li:hover {
   text-decoration-color: #D9A441;
   text-underline-offset: 6px;
 }
+
+html, body {
+  overflow-x: hidden;
+}

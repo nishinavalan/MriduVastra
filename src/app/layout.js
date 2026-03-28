@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className="bg-[#faf8ef] text-gray-900 dark:bg-[#0f172a] dark:text-white transition">
         <Navbar />
-        <main className="pt-20 px-4 min-h-screen">{children}</main>
+        <main className="pt-20 px-4 md:px-6 max-w-6xl mx-auto min-h-screen">{children}</main>
         <Footer />
       </body>
     </html>

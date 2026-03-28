@@ -5,7 +5,7 @@ import YogaWearPage from "../app/yogawear/page";
 export default function Home() {
   return (
     <div className="space-y-6">
-      <section className="bg-[#F9F6EE] pt-6 pb-4 px-6 text-center flex flex-col items-center rounded-b-3xl">
+      <section className="bg-[#F9F6EE] py-6 px-4 md:px-6 text-center flex flex-col items-center rounded-b-3xl">
         {/* <div className="pt-1"></div> For spacing below fixed navbar */}
         <div className="shadow-xl rounded-3xl overflow-hidden border-2 border-[#D9A441] mb-2">
           <Image
@@ -13,7 +13,7 @@ export default function Home() {
             width={200}
             height={200}
             alt="MriduVastra Logo"
-            className="object-contain"
+            className="w-32 md:w-48 h-auto object-contain"
           />
         </div>
         {/* <div className="p-10 text-4xl font-bold text-green-600">
